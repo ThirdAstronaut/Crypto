@@ -1,0 +1,76 @@
+entity Region {
+	regionName String required
+}
+
+entity Country {
+	countryName String required
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Location {
+	streetAddress String required,
+	postalCode String required,
+	city String required,
+	stateProvince String required
+}
+
+entity Task {
+	title String,
+	description String
+	startDate Instant,
+	endDate Instant
+}
+
+
+entity User {
+	firstName String  required,
+	lastName String required,
+	email String required,
+	phoneNumber String,
+	birthDate Date required,
+    image Byte[]
+    }
+
+entity Account {
+	userName String required,
+	password String required,
+	registrationDate Instant,
+    role Char required,
+    rank Rank required,
+	language Language
+	
+}
+
+enum Language {
+    POLISH, ENGLISH
+}
+
+enum Rank {
+	NEWBIE, EXPERIENCED, MASTER, GURU
+}
+
+relationship OneToOne {
+	Country{region} to Region
+}
+
+relationship OneToOne {
+	Location{country} to Country
+}
+
+relationship OneToOne {
+	User{location} to Location
+    User{account} to Account
+}
+
+relationship OneToMany {
+	Account{task} to Task
+}
+// Set pagination options
+paginate Task with infinite-scroll
+paginate Account with pagination
+
+dto * with mapstruct
+
+// Set an angular suffix
+angularSuffix * with mySuffix
