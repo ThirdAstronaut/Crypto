@@ -1,6 +1,7 @@
 package com.project.crypto;
 
 import com.project.crypto.controller.CoinsController;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -9,11 +10,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
 import java.util.concurrent.Executor;
 
 
@@ -22,6 +26,8 @@ import java.util.concurrent.Executor;
 @EnableScheduling
 @EnableCaching
 @EnableBatchProcessing
+@EnableJpaRepositories
+@Slf4j
 public class CryptoApplication {
     private final CoinsController coinsController;
 
@@ -31,6 +37,12 @@ public class CryptoApplication {
     }
 
     private final Logger logger = LoggerFactory.getLogger((getClass()));
+
+    @PostConstruct
+    void started() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
+
 
     public static void main(String[] args) {
         SpringApplication.run(CryptoApplication.class, args);

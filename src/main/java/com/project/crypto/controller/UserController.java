@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -31,7 +32,7 @@ public class UserController {
     }
 
     @RequestMapping("/list/{id}")
-    public User findOne(@PathVariable Long id) {
+    public Optional<User> findOne(@PathVariable Long id) {
         return userService.findOne(id);
     }
 

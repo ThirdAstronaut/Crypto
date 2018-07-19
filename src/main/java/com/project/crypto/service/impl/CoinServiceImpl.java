@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Rafał on 2017-08-30.
@@ -30,12 +31,12 @@ public class CoinServiceImpl implements CoinService {
 
     @Override
     public void saveAll(List<CoinMarketModel> list) {
-        coinRepository.save(list);
+        coinRepository.saveAll(list);
     }
 
     @Override
-    public CoinMarketModel findById(Long id) {
-        return coinRepository.findOne(id);
+    public Optional<CoinMarketModel> findById(Long id) {
+        return coinRepository.findById(id);
     }
 
     @Override
