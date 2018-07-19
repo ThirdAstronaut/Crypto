@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -27,8 +28,8 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address findOne(Long id) {
-        return addressRepository.findOne(id);
+    public Optional<Address> findOne(Long id) {
+        return addressRepository.findById(id);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public String deleteAddress(Long id) {
-        addressRepository.delete(id);
+        addressRepository.deleteById(id);
         return "{'message':'address deleted successfully'}";
     }
 }

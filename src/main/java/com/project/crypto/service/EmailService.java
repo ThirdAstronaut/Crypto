@@ -9,5 +9,6 @@ import org.springframework.mail.SimpleMailMessage;
 public interface EmailService {
 
     void sendEmail(SimpleMailMessage email);
+    void sendEmail(String fromAddress, String toAddress, String subject, String body);
 
 }

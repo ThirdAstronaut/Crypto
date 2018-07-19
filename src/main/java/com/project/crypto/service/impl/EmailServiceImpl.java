@@ -17,7 +17,7 @@ public class EmailServiceImpl implements EmailService {
     private final JavaMailSender mailSender;
 
     @Autowired
-    public EmailServiceImpl(JavaMailSender mailSender) {
+    public EmailServiceImpl(final JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 
@@ -28,5 +28,16 @@ public class EmailServiceImpl implements EmailService {
         mailSender.send(email);
     }
 
+    @Override
+    @Async
+    public void sendEmail(String fromAddress, String toAddress, String subject, String body) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
 
+        mailMessage.setTo(toAddress);
+        mailMessage.setFrom("emailWhichYouWishToShow@gmail.com");
+        mailMessage.setSubject(subject);
+        mailMessage.setText(body);
+
+        mailSender.send(mailMessage);
+    }
 }

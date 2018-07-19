@@ -27,7 +27,7 @@ import javax.persistence.Table;
         "percent_change_24h": "0.05",
         "percent_change_7d": "8.9",
         "last_updated": "1504112069"
-    */
+*/
 
 @Entity
 @Table(name = "COINS")

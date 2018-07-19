@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/address")
@@ -32,7 +33,7 @@ public class AddressController {
 	}
 	
 	@RequestMapping("/list/{id}")
-	public Address findOne(@PathVariable Long id) {
+	public Optional<Address> findOne(@PathVariable Long id) {
 		return addressService.findOne(id);
 	}
 	

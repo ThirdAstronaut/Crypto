@@ -1,6 +1,7 @@
 package com.project.crypto.model.person;
 
 import com.project.crypto.model.publication.Comment;
+import com.project.crypto.utils.ConstantUtils;
 import com.project.crypto.validators.Validate;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -24,7 +25,7 @@ public class User extends AbstractPersistable<Long> {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @OneToMany(targetEntity = Comment.class, mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Comment.class, mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
     @Column(name = "name")

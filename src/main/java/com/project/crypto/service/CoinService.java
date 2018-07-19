@@ -4,6 +4,7 @@ package com.project.crypto.service;
 import com.project.crypto.model.CoinMarketModel;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Rafał on 2017-08-30.
@@ -13,7 +14,7 @@ public interface CoinService {
 
     void saveAll(List<CoinMarketModel> list);
 
-    CoinMarketModel findById(Long id);
+    Optional<CoinMarketModel> findById(Long id);
 
     List<CoinMarketModel> findByPriceGreaterEqual(int minPrice);
 

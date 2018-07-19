@@ -33,6 +33,10 @@ public class Address {
     @Column(name = "address_zipcode", nullable = false)
     private String zipcode;
 
+    @ManyToOne
+    private User user;
+
+
     public long getId() {
         return id;
     }
